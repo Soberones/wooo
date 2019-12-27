@@ -1,11 +1,15 @@
 import React from "react";
-import { Header, Text } from "grommet";
+import { Header, Text, Heading } from "grommet";
+
 
 export function HeaderBar() {
     return (
         <Header background="neutral-3">
-            {/* <Button label="Home" /> */}
-            <Text>Weather</Text>
+            <Heading level={3} margin="none">
+                <strong>Weather</strong>
+            </Heading>
         </Header>
     );
 }
+
+

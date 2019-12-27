@@ -4,6 +4,7 @@ import { TextInput, Button } from "grommet";
 export const StyledButton = styled(Button)``;
 export const StyledTextInput = styled(TextInput)`
     margin: 10px;
+    
 `;
 
 export const Wrapper = styled.div`

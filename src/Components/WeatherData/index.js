@@ -6,8 +6,8 @@ export class Appdata extends React.Component {
     state = {
         value: "",
         temp: "",
-        lat: "",
-        ion: ""
+        lat: 0,
+        lon: 0,
     };
     handleChange = e => {
         this.setState({ value: e.target.value });
@@ -20,6 +20,7 @@ export class Appdata extends React.Component {
         this.setState({ temp: data.main.temp });
         console.log(data);
         this.setState({ lat: data.coord.lat });
+        this.setState({ lon: data.coord.lon });
     };
     render() {
         return (
@@ -28,8 +29,9 @@ export class Appdata extends React.Component {
                     sent={this.getWeather}
                     temp={this.state.temp}
                     onChange={this.handleChange}
+                    value={this.state.value}
                 />
-                <WMaps sentlat={this.state.lat} />
+                <WMaps sentlat={this.state.lat} sentlon={this.state.lon} />
             </div>
         );
     }

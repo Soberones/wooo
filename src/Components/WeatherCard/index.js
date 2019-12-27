@@ -3,6 +3,9 @@ import React from "react";
 import { StyledButton, StyledTextInput, Wrapper } from "./styles";
 
 export class WeatherCard extends React.Component {
+    state = {
+        city: ''
+    }
     render() {
         return (
             <Wrapper>
@@ -10,11 +13,14 @@ export class WeatherCard extends React.Component {
                 <StyledTextInput
                     placeholder="type here"
                     onChange={this.props.onChange}
+                    value={this.state.value}
+                    name="city"
                 />
                 <StyledButton
                     margin="right"
                     label="Get Weather"
                     onClick={this.props.sent}
+                    disabled={!this.props.value}
                 />
             </Wrapper>
         );
