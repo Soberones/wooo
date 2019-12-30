@@ -13,7 +13,7 @@ export class WeatherCard extends React.Component {
                 <StyledTextInput
                     placeholder="type here"
                     onChange={this.props.onChange}
-                    value={this.state.value}
+                    value={this.props.value}
                     name="city"
                 />
                 <StyledButton

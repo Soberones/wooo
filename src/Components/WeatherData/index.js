@@ -13,14 +13,18 @@ export class Appdata extends React.Component {
         this.setState({ value: e.target.value });
     };
     getWeather = async () => {
-        const API_URL = await fetch(
-            `https://openweathermap.org/data/2.5/weather?q=${this.state.value}&appid=b6907d289e10d714a6e88b30761fae22`
-        );
-        const data = await API_URL.json();
-        this.setState({ temp: data.main.temp });
-        console.log(data);
-        this.setState({ lat: data.coord.lat });
-        this.setState({ lon: data.coord.lon });
+        try {
+            const API_URL = await fetch(
+                `https://openweathermap.org/data/2.5/weather?q=${this.state.value}&appid=b6907d289e10d714a6e88b30761fae22`
+            );
+            const data = await API_URL.json();
+            this.setState({ temp: data.main.temp });
+            console.log(data);
+            this.setState({ lat: data.coord.lat });
+            this.setState({ lon: data.coord.lon });
+        } catch (error) {
+           alert('Введите верный город или повторите снова.')
+        }
     };
     render() {
         return (
