@@ -15,7 +15,11 @@ export class InputBlog extends Component {
         });
       };
     
-    
+    onLableChange = (e) => {
+        this.setState({
+            label: e.target.value
+        })
+    }
 
 	handleChangeInput = e => {
 		this.setState({ label: e.target.value });
@@ -24,7 +28,9 @@ export class InputBlog extends Component {
     handleChangeDescription = e => {
 		this.setState({ description: e.target.value });
     };
-    
+    onSubmit = (e) => (
+        this.props.onItemAdded(this.state.label)
+    )
 
 	render() {
 		return (
@@ -52,6 +58,12 @@ export class InputBlog extends Component {
 				>
 					Send
 				</Button>
+                <Input
+					placeholder="Input label here"
+					allowClear
+                    onChange={this.onLableChange}
+                    onSubmit={this.onSubmit}
+				/>
 			</div>
 		);
 	}

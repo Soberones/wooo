@@ -59,12 +59,14 @@ class App extends React.Component {
 
 
   
-  addItem = (state) => {
+  addItem = (newItem) => {
     const { data } = this.state
     const updatedData = [...data]
-    updatedData.push({...state, id: Symbol()})
+    updatedData.push({...newItem, id: Symbol()})
     this.setState({ data: updatedData })
-};
+
+
+
 
 
   // this.setState(({ todoData }) => {
@@ -79,7 +81,7 @@ class App extends React.Component {
   //     todoData: newArray
   //   };
   // });
-
+};
 
 	render() {
 		return (
