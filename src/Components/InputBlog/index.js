@@ -3,28 +3,45 @@ import { Input, Button } from "antd";
 
 const { TextArea } = Input;
 
-const onChange = e => {
-	console.log(e);
-};
 export class InputBlog extends Component {
+	state = { label: "", description: "" };
+
+	Send = () => console.log(this.state);
+
+	handleChangeInput = e => {
+		this.setState({ label: e.target.value });
+    };
+    
+    handleChangeDescription = e => {
+		this.setState({ description: e.target.value });
+    };
+    
+
 	render() {
 		return (
 			<div style={{ width: 500, margin: "10px" }}>
 				<h1>Whats happen?</h1>
 				<Input
-					placeholder="input with clear icon"
+					placeholder="Input label here"
 					allowClear
-					onChange={onChange}
+					onChange={this.handleChangeInput}
+					value={this.state.label}
 				/>
 				<TextArea
-					placeholder="textarea with clear icon"
+					placeholder="Input description here"
 					rows={4}
 					allowClear
-					onChange={onChange}
+					onChange={this.handleChangeDescription}
+					value={this.state.description}
 					style={{ marginTop: "10px" }}
 				/>
-				<Button type="primary" block style={{ marginTop: "10px" }}>
-					Primary
+				<Button
+					onClick={this.Send}
+					type="primary"
+					block
+					style={{ marginTop: "10px" }}
+				>
+					Send
 				</Button>
 			</div>
 		);

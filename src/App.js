@@ -33,7 +33,47 @@ class App extends React.Component {
 				id: 3
 			}
 		]
-	};
+    };
+    
+
+    
+
+  deleteItem = (id) => {
+      const { data } = this.state
+      const updatedData = data.filter((item) => item.id !== id)
+      this.setState({ data: updatedData })
+    // this.setState(({ todoData }) => {
+    //   const idx = todoData.findIndex((el) => el.id === id);
+
+    //   const newArray = [
+    //     ...todoData.slice(0, idx),
+    //     ...todoData.slice(idx + 1)
+    //   ];
+
+    //   return {
+    //     todoData: newArray
+    //   };
+    // });
+  };
+
+  addItem = (newItem) => {
+    const { data } = this.state
+    const updatedData = [...data]
+    updatedData.push({...newItem, id: Symbol()})
+    this.setState({ data: updatedData })
+  // this.setState(({ todoData }) => {
+  //   const idx = todoData.findIndex((el) => el.id === id);
+
+  //   const newArray = [
+  //     ...todoData.slice(0, idx),
+  //     ...todoData.slice(idx + 1)
+  //   ];
+
+  //   return {
+  //     todoData: newArray
+  //   };
+  // });
+};
 
 	render() {
 		return (
@@ -67,7 +107,7 @@ class App extends React.Component {
 
 					<Route path="/blog">
 						{/* <InputBlog /> */}
-						<BlogHome list={this.state} />
+						<BlogHome list={this.state} onDelete={this.deleteItem} onAdd={this.addItem}/>
 					</Route>
 				</Switch>
 			</div>

@@ -3,12 +3,14 @@ import { Card, Col, Row, Icon } from "antd";
 import { InputBlog } from "../InputBlog";
 
 export class BlogHome extends Component {
+	DeleteEvent = id => {
+        const { onDelete } = this.props;
+        onDelete(id)
+	};
+
+	ImportantEvent = id => console.log(id);
 	render() {
 		const { data } = this.props.list;
-
-		const DeleteEvent = id => console.log(id);
-
-		const ImportantEvent = id => console.log(id);
 
 		const listItems = data.map(data => (
 			<Card
@@ -20,12 +22,12 @@ export class BlogHome extends Component {
 					<Icon
 						type="delete"
 						key="dellete"
-						onClick={DeleteEvent.bind(this, data.id)}
+						onClick={this.DeleteEvent.bind(this, data.id)}
 					/>,
 					<Icon
 						type="bulb"
 						key="important"
-						onClick={() => ImportantEvent(data.id)}
+						onClick={() => this.ImportantEvent(data.id)}
 					/>
 				]}
 			>
@@ -34,12 +36,10 @@ export class BlogHome extends Component {
 		));
 		return (
 			<div style={{ background: "#ECECEC", padding: "30px" }}>
-                <InputBlog />
+				<InputBlog  onAdd={this.props.onAdd}/>
 				<Row gutter={16}>
 					<Col span={8}>{listItems}</Col>
 				</Row>
-                
-				
 			</div>
 		);
 	}
