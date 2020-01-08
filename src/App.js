@@ -9,13 +9,37 @@ import { AboutPage } from "./Components/About";
 
 import { BlogHome } from "./Components/BlogHome";
 
+import { InputBlog } from "./Components/InputBlog";
+
 class App extends React.Component {
+	state = {
+		data: [
+			{
+				label: "ONE",
+				description:
+					"How to align along the cross axis when contained in a Box or along the column axis when contained in a Grid.",
+				id: 1
+			},
+			{
+				label: "TWO",
+				description:
+					"Custom label to be used by screen readers. When provided, an aria-label will be added to the element.",
+				id: 2
+			},
+			{
+				label: "Three",
+				description:
+					"Custom label to be used by screen readers. When provided, an aria-label will be added to the element.",
+				id: 3
+			}
+		]
+	};
+
 	render() {
 		return (
 			<div>
 				<Layout>
 					<Menu
-						theme=""
 						mode="horizontal"
 						defaultSelectedKeys={["2"]}
 						style={{ lineHeight: "50px" }}
@@ -42,7 +66,8 @@ class App extends React.Component {
 					</Route>
 
 					<Route path="/blog">
-						<BlogHome />
+						{/* <InputBlog /> */}
+						<BlogHome list={this.state} />
 					</Route>
 				</Switch>
 			</div>
