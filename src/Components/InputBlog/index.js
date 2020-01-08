@@ -6,7 +6,16 @@ const { TextArea } = Input;
 export class InputBlog extends Component {
 	state = { label: "", description: "" };
 
-	Send = () => console.log(this.state);
+    //Send = (e) => console.log(this.state);
+    Send = (e) => {
+        e.preventDefault();
+        this.props.onItemAdded(this.state.label);
+        this.setState({
+          label: ""
+        });
+      };
+    
+    
 
 	handleChangeInput = e => {
 		this.setState({ label: e.target.value });

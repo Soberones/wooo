@@ -56,11 +56,17 @@ class App extends React.Component {
     // });
   };
 
-  addItem = (newItem) => {
+
+
+  
+  addItem = (state) => {
     const { data } = this.state
     const updatedData = [...data]
-    updatedData.push({...newItem, id: Symbol()})
+    updatedData.push({...state, id: Symbol()})
     this.setState({ data: updatedData })
+};
+
+
   // this.setState(({ todoData }) => {
   //   const idx = todoData.findIndex((el) => el.id === id);
 
@@ -73,7 +79,7 @@ class App extends React.Component {
   //     todoData: newArray
   //   };
   // });
-};
+
 
 	render() {
 		return (
@@ -106,8 +112,8 @@ class App extends React.Component {
 					</Route>
 
 					<Route path="/blog">
-						{/* <InputBlog /> */}
-						<BlogHome list={this.state} onDelete={this.deleteItem} onAdd={this.addItem}/>
+						<InputBlog onItemAdded={this.addItem}/>
+						<BlogHome list={this.state} onDelete={this.deleteItem} />
 					</Route>
 				</Switch>
 			</div>
