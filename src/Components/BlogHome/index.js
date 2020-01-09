@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Card, Col, Row, Icon } from "antd";
-import { InputBlog } from "../InputBlog";
+
 
 export class BlogHome extends Component {
+	
 	DeleteEvent = id => {
-        const { onDelete } = this.props;
-        onDelete(id)
+		const { onDelete } = this.props;
+		onDelete(id);
 	};
 
 	ImportantEvent = id => console.log(id);
@@ -36,7 +37,6 @@ export class BlogHome extends Component {
 		));
 		return (
 			<div style={{ background: "#ECECEC", padding: "30px" }}>
-				<InputBlog  onAdd={this.props.onAdd}/>
 				<Row gutter={16}>
 					<Col span={8}>{listItems}</Col>
 				</Row>

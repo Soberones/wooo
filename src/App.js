@@ -9,9 +9,11 @@ import { AboutPage } from "./Components/About";
 
 import { BlogHome } from "./Components/BlogHome";
 
-import { InputBlog } from "./Components/InputBlog";
+import { InputBlogTest } from "./Components/InputBlogTest";
 
 class App extends React.Component {
+	maxId = 100
+
 	state = {
 		data: [
 			{
@@ -37,11 +39,13 @@ class App extends React.Component {
     
 
     
-
+// код Лёши
   deleteItem = (id) => {
       const { data } = this.state
       const updatedData = data.filter((item) => item.id !== id)
-      this.setState({ data: updatedData })
+	  this.setState({ data: updatedData })};
+	  
+
     // this.setState(({ todoData }) => {
     //   const idx = todoData.findIndex((el) => el.id === id);
 
@@ -54,18 +58,42 @@ class App extends React.Component {
     //     todoData: newArray
     //   };
     // });
-  };
-
-
-
   
-  addItem = (newItem) => {
-    const { data } = this.state
-    const updatedData = [...data]
-    updatedData.push({...newItem, id: Symbol()})
-    this.setState({ data: updatedData })
 
 
+
+// леха написал
+//   addItem = (newItem) => {
+//     const { data } = this.state
+//     const updatedData = [...data]
+//     updatedData.push({...newItem, id: Symbol()})
+//     this.setState({ data: updatedData })}
+
+createBlogPost(label) {
+	return {
+		label,
+		id: this.maxId++
+	}
+}
+
+addItem = (data) => {
+	const newItem = {
+		label: data.label,
+		description: data.description,
+		id: this.maxId++
+
+	}
+	this.setState(({data}) => {
+		const newArray = [
+			...data,
+			newItem
+		]
+		return {
+			data: newArray
+		}
+
+	})
+}
 
 
 
@@ -81,7 +109,7 @@ class App extends React.Component {
   //     todoData: newArray
   //   };
   // });
-};
+
 
 	render() {
 		return (
@@ -114,7 +142,7 @@ class App extends React.Component {
 					</Route>
 
 					<Route path="/blog">
-						<InputBlog onItemAdded={this.addItem}/>
+						<InputBlogTest onItemAddet={this.addItem}/>
 						<BlogHome list={this.state} onDelete={this.deleteItem} />
 					</Route>
 				</Switch>

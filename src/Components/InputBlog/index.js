@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Input, Button } from "antd";
+import { Wrapper } from "../InputBlogTest/styles";
 
 const { TextArea } = Input;
 
@@ -34,7 +35,7 @@ export class InputBlog extends Component {
 
 	render() {
 		return (
-			<div style={{ width: 500, margin: "10px" }}>
+			<Wrapper>
 				<h1>Whats happen?</h1>
 				<Input
 					placeholder="Input label here"
@@ -58,13 +59,7 @@ export class InputBlog extends Component {
 				>
 					Send
 				</Button>
-                <Input
-					placeholder="Input label here"
-					allowClear
-                    onChange={this.onLableChange}
-                    onSubmit={this.onSubmit}
-				/>
-			</div>
+			</Wrapper>
 		);
 	}
 }
