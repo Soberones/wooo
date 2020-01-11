@@ -38,7 +38,7 @@ export class InputBlog extends Component {
 			<Wrapper>
 				<h1>Whats happen?</h1>
 				<Input
-					placeholder="Input label here"
+					placeholder="Input label herdddde"
 					allowClear
 					onChange={this.handleChangeInput}
 					value={this.state.label}
@@ -56,6 +56,7 @@ export class InputBlog extends Component {
 					type="primary"
 					block
 					style={{ marginTop: "10px" }}
+					disabled={!this.state.label}
 				>
 					Send
 				</Button>

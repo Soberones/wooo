@@ -31,6 +31,7 @@ export class InputBlogTest extends Component {
 						allowClear
 						onChange={this.onLableChange}
 						value={this.state.label}
+						minLength="5"
 					/>
 					<TextArea rows={4}
 						placeholder="Input description here"
@@ -38,8 +39,9 @@ export class InputBlogTest extends Component {
 						onChange={this.onDescriptionChange}
 						value={this.state.description}
 						style={{ marginTop: "10px"}}
+						
 					/>
-					<Button type="primary" htmlType="submit">POST</Button>
+					<Button type="primary" shape="round" htmlType="submit" disabled={!this.state.label || !this.state.description} style={{ marginTop: "5px"}}>POST</Button>
 				</Form>
 			</Wrapper>
 		);

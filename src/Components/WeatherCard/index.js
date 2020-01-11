@@ -1,6 +1,7 @@
 import React from "react";
 //import { TextInput, Button } from "grommet";
-import { StyledButton, StyledTextInput, Wrapper } from "./styles";
+import { StyledTextInput, Wrapper } from "./styles";
+import {Form, Button} from 'antd'
 
 export class WeatherCard extends React.Component {
     state = {
@@ -9,6 +10,8 @@ export class WeatherCard extends React.Component {
     render() {
         return (
             <Wrapper>
+                <Form onSubmit={this.props.sent}>
+
                 <h1>Temperature: {this.props.temp}°</h1>
                 <StyledTextInput
                     placeholder="type here"
@@ -16,12 +19,14 @@ export class WeatherCard extends React.Component {
                     value={this.props.value}
                     name="city"
                 />
-                <StyledButton
+                {/* <StyledButton
                     margin="right"
                     label="Get Weather"
                     onClick={this.props.sent}
                     disabled={!this.props.value}
-                />
+                /> */}
+                <Button label="Get Weather" type="primary" disabled={!this.props.value} shape="round" htmlType="submit" style={{ marginTop: "5px"}}>POST</Button>
+                </Form>
             </Wrapper>
         );
     }

@@ -1,17 +1,19 @@
 import React, { Component } from "react";
-import { Card, Col, Row, Icon } from "antd";
-
+import { Card, Col, Row, Icon, Empty } from "antd";
 
 export class BlogHome extends Component {
-	
 	DeleteEvent = id => {
 		const { onDelete } = this.props;
 		onDelete(id);
 	};
 
 	ImportantEvent = id => console.log(id);
+
 	render() {
 		const { data } = this.props.list;
+
+		const isEmpty = data.length === 0 
+		
 
 		const listItems = data.map(data => (
 			<Card
@@ -36,10 +38,23 @@ export class BlogHome extends Component {
 			</Card>
 		));
 		return (
-			<div style={{ background: "#ECECEC", padding: "30px" }}>
+			<div>
+				{/* <div style={{ background: "#ECECEC", padding: "5px" }}> */}
 				<Row gutter={16}>
-					<Col span={8}>{listItems}</Col>
+					<Col
+						style={{
+							display: "flex",
+							flexDirection: "row",
+							flexWrap: "wrap",
+							width: "100%"
+						}}
+					>
+						{listItems}
+						
+					</Col>
 				</Row>
+				{isEmpty && <Empty/>}
+				
 			</div>
 		);
 	}

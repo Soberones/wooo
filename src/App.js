@@ -11,105 +11,95 @@ import { BlogHome } from "./Components/BlogHome";
 
 import { InputBlogTest } from "./Components/InputBlogTest";
 
+
+const { Content} = Layout;
+
 class App extends React.Component {
-	maxId = 100
+	maxId = 100;
 
 	state = {
 		data: [
-			{
-				label: "ONE",
-				description:
-					"How to align along the cross axis when contained in a Box or along the column axis when contained in a Grid.",
-				id: 1
-			},
-			{
-				label: "TWO",
-				description:
-					"Custom label to be used by screen readers. When provided, an aria-label will be added to the element.",
-				id: 2
-			},
-			{
-				label: "Three",
-				description:
-					"Custom label to be used by screen readers. When provided, an aria-label will be added to the element.",
-				id: 3
-			}
+			// {
+			// 	label: "ONE",
+			// 	description:
+			// 		"How to align along the cross axis when contained in a Box or along the column axis when contained in a Grid.",
+			// 	id: 1
+			// },
+			// {
+			// 	label: "TWO",
+			// 	description:
+			// 		"Custom label to be used by screen readers. When provided, an aria-label will be added to the element.",
+			// 	id: 2
+			// },
+			// {
+			// 	label: "Three",
+			// 	description:
+			// 		"Custom label to be used by screen readers. When provided, an aria-label will be added to the element.",
+			// 	id: 3
+			// }
 		]
-    };
-    
+	};
 
-    
-// код Лёши
-  deleteItem = (id) => {
-      const { data } = this.state
-      const updatedData = data.filter((item) => item.id !== id)
-	  this.setState({ data: updatedData })};
-	  
+	// код Лёши
+	deleteItem = id => {
+		const { data } = this.state;
+		const updatedData = data.filter(item => item.id !== id);
+		this.setState({ data: updatedData });
+	};
 
-    // this.setState(({ todoData }) => {
-    //   const idx = todoData.findIndex((el) => el.id === id);
+	// this.setState(({ todoData }) => {
+	//   const idx = todoData.findIndex((el) => el.id === id);
 
-    //   const newArray = [
-    //     ...todoData.slice(0, idx),
-    //     ...todoData.slice(idx + 1)
-    //   ];
+	//   const newArray = [
+	//     ...todoData.slice(0, idx),
+	//     ...todoData.slice(idx + 1)
+	//   ];
 
-    //   return {
-    //     todoData: newArray
-    //   };
-    // });
-  
+	//   return {
+	//     todoData: newArray
+	//   };
+	// });
 
+	// леха написал
+	//   addItem = (newItem) => {
+	//     const { data } = this.state
+	//     const updatedData = [...data]
+	//     updatedData.push({...newItem, id: Symbol()})
+	//     this.setState({ data: updatedData })}
 
-
-// леха написал
-//   addItem = (newItem) => {
-//     const { data } = this.state
-//     const updatedData = [...data]
-//     updatedData.push({...newItem, id: Symbol()})
-//     this.setState({ data: updatedData })}
-
-createBlogPost(label) {
-	return {
-		label,
-		id: this.maxId++
-	}
-}
-
-addItem = (data) => {
-	const newItem = {
-		label: data.label,
-		description: data.description,
-		id: this.maxId++
-
-	}
-	this.setState(({data}) => {
-		const newArray = [
-			...data,
-			newItem
-		]
+	createBlogPost(label) {
 		return {
-			data: newArray
-		}
+			label,
+			id: this.maxId++
+		};
+	}
 
-	})
-}
+	addItem = data => {
+		const newItem = {
+			label: data.label,
+			description: data.description,
+			id: this.maxId++
+		};
+		this.setState(({ data }) => {
+			const newArray = [...data, newItem];
+			return {
+				data: newArray
+			};
+		});
+	};
 
+	// this.setState(({ todoData }) => {
+	//   const idx = todoData.findIndex((el) => el.id === id);
 
+	//   const newArray = [
+	//     ...todoData.slice(0, idx),
+	//     ...todoData.slice(idx + 1)
+	//   ];
 
-  // this.setState(({ todoData }) => {
-  //   const idx = todoData.findIndex((el) => el.id === id);
-
-  //   const newArray = [
-  //     ...todoData.slice(0, idx),
-  //     ...todoData.slice(idx + 1)
-  //   ];
-
-  //   return {
-  //     todoData: newArray
-  //   };
-  // });
-
+	//   return {
+	//     todoData: newArray
+	//   };
+	// });
 
 	render() {
 		return (
@@ -142,8 +132,13 @@ addItem = (data) => {
 					</Route>
 
 					<Route path="/blog">
-						<InputBlogTest onItemAddet={this.addItem}/>
-						<BlogHome list={this.state} onDelete={this.deleteItem} />
+						<Layout className="layout">
+							<Content style={{ padding: "10px" }} >
+								<InputBlogTest onItemAddet={this.addItem} />
+								<hr></hr>
+								<BlogHome list={this.state} onDelete={this.deleteItem} />
+							</Content>
+						</Layout>
 					</Route>
 				</Switch>
 			</div>

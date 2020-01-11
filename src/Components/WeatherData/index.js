@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { WeatherCard } from "../WeatherCard";
 import { WMaps } from "../WorldMap";
+import { notification } from "antd";
 
 export class Appdata extends React.Component {
     state = {
@@ -12,8 +13,21 @@ export class Appdata extends React.Component {
     handleChange = e => {
         this.setState({ value: e.target.value });
     };
-    getWeather = async () => {
+
+    notifiacation = () => {
+        
+  notification.open({
+    message: 'W A R N I N G',
+    description:
+      'Error getting weather or entered the wrong city',
+    onClick: () => {
+      console.log('Notification Clicked!');
+    },
+  });
+    }
+    getWeather = async (e) => {
         try {
+            e.preventDefault();
             const API_URL = await fetch(
                 `https://openweathermap.org/data/2.5/weather?q=${this.state.value}&appid=b6907d289e10d714a6e88b30761fae22`
             );
@@ -23,7 +37,7 @@ export class Appdata extends React.Component {
             this.setState({ lat: data.coord.lat });
             this.setState({ lon: data.coord.lon });
         } catch (error) {
-           alert('Введите верный город или повторите снова.')
+           this.notifiacation()
         }
     };
     render() {
