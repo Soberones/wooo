@@ -7,6 +7,7 @@ export class WeatherCard extends React.Component {
     state = {
         city: ''
     }
+
     render() {
         return (
             <Wrapper>

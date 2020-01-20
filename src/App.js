@@ -8,11 +8,10 @@ import { Appdata } from "./Components/WeatherData";
 import { AboutPage } from "./Components/About";
 
 import { BlogHome } from "./Components/BlogHome";
-
+import { LoginPage } from "./Components/LoginPage";
 import { InputBlogTest } from "./Components/InputBlogTest";
 
-
-const { Content} = Layout;
+const { Content } = Layout;
 
 class App extends React.Component {
 	maxId = 100;
@@ -37,9 +36,12 @@ class App extends React.Component {
 			// 		"Custom label to be used by screen readers. When provided, an aria-label will be added to the element.",
 			// 	id: 3
 			// }
-		]
+		],
+		city: "not send"
 	};
-
+	updateData = value => {
+		this.setState({ city: value });
+	};
 	// код Лёши
 	deleteItem = id => {
 		const { data } = this.state;
@@ -114,31 +116,39 @@ class App extends React.Component {
 							<Link to="/">Home</Link>
 						</Menu.Item>
 						<Menu.Item>
-							<Link to="/about">About</Link>
+							{/* protectedpage */}
+							<Link to="/Chart">Chart</Link>
 						</Menu.Item>
 						<Menu.Item>
 							<Link to="/blog">Blog</Link>
+						</Menu.Item>
+						<Menu.Item>
+							<Link to="/ogin">login</Link>
 						</Menu.Item>
 					</Menu>
 				</Layout>
 
 				<Switch>
 					<Route exact path="/">
-						<Appdata />
+						<p>State: {this.state.city}</p>
+						<Appdata updateData={this.updateData} />
 					</Route>
 
-					<Route path="/about">
-						<AboutPage />
+					<Route path="/Chart">
+						<AboutPage workCity={this.state.city} />
 					</Route>
 
-					<Route path="/blog">
+					<Route path="/blog/">
 						<Layout className="layout">
-							<Content style={{ padding: "10px" }} >
+							<Content style={{ padding: "10px" }}>
 								<InputBlogTest onItemAddet={this.addItem} />
 								<hr></hr>
 								<BlogHome list={this.state} onDelete={this.deleteItem} />
 							</Content>
 						</Layout>
+					</Route>
+					<Route path="/login">
+						<LoginPage />
 					</Route>
 				</Switch>
 			</div>
